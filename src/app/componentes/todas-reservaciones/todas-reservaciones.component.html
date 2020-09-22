@@ -1,0 +1,66 @@
+<h1>Listado de reservaciones</h1>
+<button class="btn btn-danger" routerLink="/reservacion/:id">ATRAS</button>
+
+<div class="row">
+    <div class="col text-right">
+        <button class="btn btn-success" routerLink="/home">
+      <i class="fa fa-plus"> Seleccionar Restaurante </i>
+    </button>
+    </div>
+</div>
+<hr />
+<table *ngIf="!cargando && reservacion.length > 0" class="table mt-3 animate__animated slow animate__fadeInDownBig">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col"># Personas</th>
+            <th scope="col">fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Restaurante</th>
+            <th scope="col">Zona</th>
+            <th scope="col">Tool</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reserva of reservacion; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+
+            <td>{{ reserva.NobreCte }}</td>
+            <td>{{ reserva.numPers }}</td>
+            <td>{{ reserva.fecha }}</td>
+            <td>{{ reserva.hora }}</td>
+            <td>
+                {{ reserva.nameRestaurant }}
+            </td>
+            <td>
+                {{ reserva.zona }}
+            </td>
+
+            <td class="align-items">
+                <button class="btn btn-info mr-1" [routerLink]="['/reservacion', i]">
+          <i class="fa fa-pen"></i>
+        </button>
+
+                <button class="btn btn-danger mr-1 mt-1" (click)="borrarReservacion(reservacion, i)">
+          <i class="fa fa-trash"></i>
+        </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!cargando && reservacion.length === 0" class="alert alert-warning text-center mt-3">
+    <h4 class="alert-heading">No hay registro</h4>
+    <p>
+        <i class="fa fa-exclamation fa-2x"> </i>
+    </p>
+</div>
+
+<div *ngIf="cargando" class="alert alert-success text-center mt-3 animate__lightSpeedInRight">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"> </i>
+    </p>
+    <p class="mb-0">Espere por Favor</p>
+</div>

@@ -1,0 +1,64 @@
+<!-- particles.js container -->
+
+<!-- <mat-paginator [length]="city.length" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)" showFirstLastButtons>
+</mat-paginator>-->
+
+<mat-paginator [length]="restaurantes.length" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)" showFirstLastButtons>
+</mat-paginator>
+
+<div class="container-fluid slider d-flex flex-column justify-content-center item align-items-center mb-2">
+    <div class="jumbotron dark">
+        <h1 id="titulo" class="display-5">Find your table for any occasion!</h1>
+        <div class="form-group row container-fluid d-flex justify-content-center">
+            <div class="col-8">
+                <select class="form-control btn-block" name="country">
+          <option>Select Country</option>
+          <option *ngFor="let pais of country; let i = index">
+            {{ pais }}
+          </option>
+        </select>
+                <select class="form-control btn-block" name="ciudad">
+          <option>Select City</option>
+          <option
+            *ngFor="let cities of city; let i = index"
+            value="cities.ciudad "
+          >
+            {{ cities }}
+          </option>
+        </select>
+            </div>
+        </div>
+        <hr class="my-4" />
+
+        <div class="container-fluid d-flex justify-content-center">
+            <a id="tab" href="" class="navbar-brand text-black-50 m-3">
+                <i class="fas fa-search"> </i> Search ...
+            </a>
+        </div>
+    </div>
+</div>
+<!-- CARD-->
+<div class="card-columns">
+    <div class="card" *ngFor="let datos of restaurantes | paginate: page_size:page_number" [routerLink]="['/reservacion', datos.id]">
+        <img [src]="img" class="card-img-top" alt="... " />
+        <div class="card-body" [id]="datos.id">
+            <h5 class="card-title">{{ datos.name }}</h5>
+            <p class="card-text">{{ datos.city }}</p>
+            <p class="card-text">
+                <small class="text-muted">{{ datos.area }}</small>
+            </p>
+            <p class="card-text">
+                <small class="text-muted">{{ datos.address }}</small>
+            </p>
+            <button class="btn btn-dark btn-block">Details</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="cargando" class="alert alert-success text-center mt-3 animate__lightSpeedInRight">
+    <h4 class="alert-heading">Cargando</h4>
+    <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"> </i>
+    </p>
+    <p class="mb-0">Espere por Favor</p>
+</div>

@@ -1,0 +1,129 @@
+<mat-toolbar>
+    <section>
+        <button mat-raised-button color="warn" routerLink="/home">Regresar</button>
+    </section>
+</mat-toolbar>
+
+<hr class="my-4" />
+<div *ngIf="restaurante" class="container main-container animanated fadeIn fast">
+    <h1 class="m-2">Reservacion</h1>
+    <div class="row">
+        <div class="col-md-5">
+            <img [src]="img" alt="" class="img-thumbnail img-fluid" style="height: 500px" />
+        </div>
+
+        <div class="col-md-7">
+            <a href="{{ restaurante.reserve_url }}" target="_blank">
+                <h3>
+                    {{ restaurante.name }}
+                </h3>
+            </a>
+            <small>{{ restaurante.area }}</small>
+            <br />
+            <strong><small class="text-black btn-outline-dark">
+          Phone: {{ restaurante.phone }}
+        </small></strong
+      >
+      <hr />
+      <form (ngSubmit)="guardar(f)" #f="ngForm">
+        <div class="form-group">
+          <!--[(ngModel)]="reservacion.hora =nameRestaurant-->
+
+          <label for="">Name of Reserve</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Reserve in name"
+            name="nombre"
+            required
+            minlength="5"
+            [(ngModel)]="reservacion.NobreCte"
+            #nombre="ngModel"
+          />
+          <small class="form-text text-danger">Insert 5 letter</small>
+        </div>
+
+        <div class="form-group">
+          <label for="">Cantidad de Personas</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Cuantas personas son"
+            name="numPers"
+            required
+            [(ngModel)]="reservacion.numPers"
+            #numPers="ngModel"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="Reservacion">Fecha </label>
+          <input
+            class="form-control"
+            type="date"
+            id="Reservacion"
+            name="fecha"
+            [(ngModel)]="reservacion.fecha"
+            #fecha="ngModel"
+          />
+        </div>
+        <div class="form-group">
+          <label for="appt">Hora</label>
+
+          <input
+            class="form-control"
+            type="time"
+            id="appt"
+            name="appt"
+            min="18:00"
+            max="24:00"
+            required
+            [(ngModel)]="reservacion.hora"
+            #hora="ngModel"
+          />
+        </div>
+
+        <div class="form-group text-center mt-2">
+          <button type="submit" class="btn btn-dark btn-block">
+            <i class="fa fa-save"> Reservar </i>
+          </button>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-dark btn-block"
+          [routerLink]="['/reservaciones']"
+        >
+          <i class="fa fa-list"> Ver lista de reservas </i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<mat-card>
+  <mat-card-title>Mapa</mat-card-title>
+
+  <mat-card-content>
+    <!-- this creates a google map on the page with the given lat/lng from -->
+    <!-- the component as the initial center of the map: -->
+    <agm-map
+      [latitude]="restaurante.lat"
+      [longitude]="restaurante.lng"
+      [zoom]="13"
+    >
+      <agm-marker [latitude]="restaurante.lat" [longitude]="restaurante.lng">
+        <agm-info-window>
+          <h2>
+            <strong>{{ restaurante.name }}</strong>
+            </h2>
+            <p>Phone:{{ restaurante.phone }}</p>
+
+            <div>
+                <button mat-raised-button color="primary">Editar</button>
+                <button mat-raised-button color="warn">Borrar</button>
+            </div>
+            </agm-info-window>
+            </agm-marker>
+            </agm-map>
+            </mat-card-content>
+            </mat-card>

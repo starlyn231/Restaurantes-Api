@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+.slider {
+    background: url("assets/img/imagen.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    opacity: 1;
+    height: 26rem;
+}
+
+#tab {
+    padding: 4px 16px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: black;
+    transition: all 0.1s ease-in;
+    border: 0.0625rem solid #d8d9db;
+    margin: 0.0625rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    margin: 2px;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+
+/* Animaciones */
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.main-container {
+    margin-top: 150px;
+    margin-bottom: 150px;
+    padding: 30px;
+}
+
+#titulo {}
